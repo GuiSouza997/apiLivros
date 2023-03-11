@@ -114,7 +114,9 @@ class LivroController extends Controller
                             $indice->titulo = $item["titulo"];
                             $indice->pagina = $item["pagina"];
                             $indice->indice_pai_id = $item["pagina"];
+                            // Salvando indice
                             $indice->save();
+
                         });
                         return response()->json(['success' => true, "message" => "Livro criado com sucesso."], $this->successStatus);
                     }
