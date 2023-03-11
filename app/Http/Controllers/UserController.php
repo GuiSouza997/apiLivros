@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Laravel\Passport\Passport;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\Response;
 
 class UserController extends Controller
 {
