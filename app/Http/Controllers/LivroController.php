@@ -104,7 +104,6 @@ class LivroController extends Controller
 
                 if ($livro->save()) {
                     $dataMessage = $this->validateFields($request->indices, ["titulo", "pagina"], true);
-
                     $livroId = $livro->id;
                     if (is_array($dataMessage) and empty($dataMessage)) {
 
@@ -115,18 +114,9 @@ class LivroController extends Controller
                             $indice->titulo = $item["titulo"];
                             $indice->pagina = $item["pagina"];
                             $indice->indice_pai_id = $item["pagina"];
-
-                            if ($indice->save()) {
-                                $indicePai = $indice->id;
-                                // if (isset($item["subindices"]) and !empty($item["subindices"])) {
-                                //     $newSubIndices = array_merge(["livro_id" => $livroId, "indice_pai_id" => $item["pagina"]], $item["subindices"]);
-                                //     dd($newSubIndices);
-                                //     Indice::create($newSubIndices);
-
-                                // }
-                                return response()->json(['success' => true, "message" => "Livro criado com sucesso."], $this->successStatus);
-                            }
+                            $indice->save();
                         });
+                        return response()->json(['success' => true, "message" => "Livro criado com sucesso."], $this->successStatus);
                     }
                 }
             } else {
